@@ -72,7 +72,7 @@ Before you start coding fun stuff, you need to start Data Grid Server. If you ha
 //Step 3
 === Getting the Weather Application
 
-Back in {{ CHE_URL }}[CodeReady Workspaces^], navigate to the project `infinispan-server-tutorial`. This is a template project, and you will be writing code into this project.
+Back in {{ CHE_URL }}[Dev Spaces Workspaces^], navigate to the project `infinispan-server-tutorial`. This is a template project, and you will be writing code into this project.
 As you can see there is already some files in place. Let's take a look into what these files are and do.
 
 //Step 4

@@ -1,7 +1,7 @@
-# This is the Data Grid 8.2 workshop
+# This is the Data Grid 8.4 workshop
 
 The workshop can be deployed on Openshift 4.3+ cluster. 
-It requires the DataGrid, CodeReady operators. 
+It requires the DataGrid, Dev Spaces operators. 
 
 ## Contributing
 Incase you find an issue; use the issues; 
@@ -58,8 +58,7 @@ ansible-playbook -i ${TARGET_HOST}, ./configs/ocp-workloads/ocp-workload.yml \
 ```
 
 ### What does the installer do? 
-- Install CodeReady Workspace Operator in namespace `codeready`
+- Install Dev Spaces Workspace Operator in namespace `openshift-devspaces`
 - Creates project for each user e.g. `user1-cache`
-- Creates codeready workspaces for each user and sets it with a Quarkus ready devfile.
 - Installs DataGrid Operator and subscribes each user project to it. 
 - Create a `guides` project with the latest instruction guides for attendees

@@ -201,14 +201,14 @@ You will see the following ISPN logs. It sometimes takes a min to join the clust
 
 image::clusterlogs.png[Caching, 800]
 
-Now open another terminal in CodeReady workspaces and change to the scripts directory
+Now open another terminal in Dev Spaces workspaces and change to the scripts directory
 
 [source, shell, role="copypaste"]
 ----
 cd dg8-embedded-quarkus/scripts
 ----
 
-in this directory we have a load.sh file. Open this file in CodeReady Workspaces and change the variable `EP` to the application route from the browser (including the `/api` suffix):
+in this directory we have a load.sh file. Open this file in Dev Spaces Workspaces and change the variable `EP` to the application route from the browser (including the `/api` suffix):
 
 image::lab2epchange.png[Caching, 900]
 

@@ -362,7 +362,7 @@ Now run the following bash script in a *new* terminal(assuming live coding is st
 sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
-Reload *PREVIEW* again in CodeReady workspaces and you will see some scores updated. Now these scores were posted directly:
+Reload *PREVIEW* again in Dev Spaces workspaces and you will see some scores updated. Now these scores were posted directly:
 
 <1> Via our ScoreResource
 <2> Into our ScoreService

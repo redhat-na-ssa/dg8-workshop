@@ -19,7 +19,7 @@ Red Hat Data Grid 8 comes with an Operator. The administrators of the cluster yo
 
 First, you will have to *log in from two different places*: 
 
-* *STEP 1*: If you have not already logged into OpenShift from the CodeReady Workspaces terminal, please do that now. Click on the `Login to Openshift` menu in the right menu called 'Workspace'. When prompted, your *Username* is `{{ USER_ID }}` and your *Password* `{{ OPENSHIFT_USER_PASSWORD }}`.
+* *STEP 1*: If you have not already logged into OpenShift from the Dev Spaces Workspaces terminal, please do that now. Click on the `Login to Openshift` menu in the right menu called 'Workspace'. When prompted, your *Username* is `{{ USER_ID }}` and your *Password* `{{ OPENSHIFT_USER_PASSWORD }}`.
 
 * *STEP 2*: You will also need to access the OpenShift Web Console. Open a new tab to the link:{{ CONSOLE_URL }}[OpenShift web console^]. You will be prompted to log in. Use the following credentials:
 
@@ -62,7 +62,7 @@ NOTE: We are calling our service `datagrid-service`, we will use this name in th
 
 Click *Create* at the bottom. Wait until the Data Grid nodes have successfully formed a cluster.
 
-Now let's retrieve the Data Grid CR definition from the command line. To do this, head over to the CodeReady Workspace and log in to Openshift. 
+Now let's retrieve the Data Grid CR definition from the command line. To do this, head over to the Dev Spaces Workspace and log in to Openshift. 
 
 image::che_openshift_login.png[openshift_login, 700]
 
@@ -81,7 +81,7 @@ Using project "{{ USER_ID }}-cache".
 Welcome! See 'oc help' to get started.
 ----
 
-Initiate a `>_ New Terminal`` in CodeReady workspace as in the previous section and run the following command
+Initiate a `>_ New Terminal`` in Dev Spaces workspace as in the previous section and run the following command
 
 [source, shell, role="copypaste"]
 ----
@@ -209,7 +209,7 @@ If you try to access the URL; by providing the protocol `https` and the Data Gri
 
 you would need to provide credentials. 
 
-The Data Grid operator creates the credentials during installation time and they should be stored in your namespace secrets. Head back to your CodeReady Workspace terminal. Let's get the secret with the following command.
+The Data Grid operator creates the credentials during installation time and they should be stored in your namespace secrets. Head back to your Dev Spaces Workspace terminal. Let's get the secret with the following command.
 
 [source, shell, role="copypaste"]
 ----
