@@ -18,9 +18,9 @@ image::devspace-login.png[devspace-login, 700, align="center"]
 Using the Devspaces dashboard, let's create a workspace for this workshop.
 In the `Import from Git` section, copy the following Github repository link in the `Git repo URL` field. Click `Create & Open` to create and start the workspace.
 
-[source, java, role="copypaste"]
+[source, shell, role="copypaste"]
 ----
-    https://github.com/redhat-na-ssa/dg8-workshop-labs.git
+https://github.com/redhat-na-ssa/dg8-workshop-labs.git
 ----
 
 image::devspace-dashboard.png[devspace-dashboard, 700, align="center"]

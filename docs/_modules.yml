@@ -26,5 +26,3 @@ modules:
     name: Setting up your own environment
   conclusion:
     name: You made it!
-  references:
-    name: References
