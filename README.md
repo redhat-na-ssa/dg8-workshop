@@ -1,23 +1,23 @@
 # This is the Data Grid 8.4 workshop
 
-The workshop can be deployed on Openshift 4.3+ cluster. 
+Last tested with OpenShift 4.18 
 It requires the DataGrid, Dev Spaces operators. 
 
 ## Contributing
-Incase you find an issue; use the issues; 
-Incase you want to fix an issue; create a PR to the development branch
+In case you find an issue; use the issues; 
+In case you want to fix an issue; create a PR to the appropriate version branch
 
 ## Docs/Instructions
 After you have cloned this repo. Head off to the docs directory and run the runFile.sh and head of to localhost:4000 to view the documentation.
 
 ## Deployment
-If you are looking to deploy this workshop on Openshift 4.3:
+If you are looking to deploy this workshop on OpenShift:
 
 ```
 git clone https://github.com/redhat-cop/agnosticd
 ```
 
-Request an Openshift 4.3 Workshop from rhpds. Once the environment is provisioned, you should receive an email with credentials and links to your environment.
+Request an OpenShift cluster from rhpds. Once the environment is provisioned, you should receive an email with credentials and links to your environment.
 
 If you have generated a password less private key, you might want to do something like this:
 
@@ -58,7 +58,7 @@ ansible-playbook -i ${TARGET_HOST}, ./configs/ocp-workloads/ocp-workload.yml \
 ```
 
 ### What does the installer do? 
-- Install Dev Spaces Workspace Operator in namespace `openshift-devspaces`
+- Install Dev Spaces Operator in namespace `openshift-devspaces`
 - Creates project for each user e.g. `user1-cache`
 - Installs DataGrid Operator and subscribes each user project to it. 
 - Create a `guides` project with the latest instruction guides for attendees
