@@ -10,7 +10,7 @@ An embedded cache service allows Spring Boot applications to embed HTTP session 
 
 Go to _Explorer: /projects_ in _Dev Spaces_ Web IDE and expand the *dg8-spring-session* directory.
 
-image::codeready-workspace-embeddedCache-project.png[embeddedCache, 700]
+image::devspaces-embedded-cache-project.png[embeddedCache, 700]
 
 There are a few interesting things that we need to take a look at in this Spring Boot application before we will develop it in Dev Spaces.
 
