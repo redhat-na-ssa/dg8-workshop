@@ -92,7 +92,7 @@ Copy below the `// TODO: Add globalCustomizer method here` marker to customize I
    }
 ----
 
-Finally, add the `@EnableInfinispanEmbeddedHttpSession`` annotation to the `EmbeddedCacheConfig` class to enable Spring Cache support. When this starter detects the EmbeddedCacheManager bean, it instantiates a new `SpringEmbeddedCacheManager`, which provides an implementation of https://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html[Spring Cache^].
+Finally, add the `@EnableInfinispanEmbeddedHttpSession` annotation to the `EmbeddedCacheConfig` class to enable Spring Cache support. When this starter detects the EmbeddedCacheManager bean, it instantiates a new `SpringEmbeddedCacheManager`, which provides an implementation of https://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html[Spring Cache^].
 
 Copy below the `// TODO: Add an Infinispan annotation here` marker:
 [source,java,role="copypaste"]

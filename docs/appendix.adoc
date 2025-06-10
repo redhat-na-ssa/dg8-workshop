@@ -1,9 +1,7 @@
 == APPENDIX: Setting up my own machine for the lab
 :experimental:
 
-The labs are designed to run entirely on Openshift, there is no mandatory requirement to install the following components. The following instructions are means of guidance for anyone who wants to try them out on their own machine. 
-
-*Recommended path is to use the Openshift RHMI/Integreatly environment provided in this workshop.
+The labs are designed to run entirely on OpenShift, there is no mandatory requirement to install the following components. The following instructions are means of guidance for anyone who wants to try them out on their own machine. 
 
 === Java Development Kit
 
@@ -42,7 +40,7 @@ If you don't have an IDE, here are the steps to get started with Eclipse.
 
 [source]
 ----
-git clone https://github.com/RedHat-Middleware-Workshops/dg8-workshop-labs.git
+git clone https://github.com/redhat-na-ssa/dg8-workshop-labs.git
 ----
 
 
