@@ -359,7 +359,7 @@ Now run the following bash script in a *new* terminal(assuming live coding is st
 
 [source, shell, role="copypaste"]
 ----
-sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
+sh $PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
 Reload *PREVIEW* again in Dev Spaces workspaces and you will see some scores updated. Now these scores were posted directly:
@@ -441,7 +441,7 @@ Okay now its time to test this change. Go back into the terminal and run `load.s
 
 [source, shell, role="copypaste"]
 ----
-sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
+sh $PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
 Reload *PREVIEW* right away. and you will see the entries again. Now wait for 5 seconds and reload again.
@@ -469,7 +469,7 @@ and re-run the load script:
 
 [source, shell, role="copypaste"]
 ----
-sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
+sh $PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
 Reload *PREVIEW* right away. and you will see the entries again. Now wait for 5 seconds and refresh again.
@@ -534,7 +534,7 @@ and re-run the load script:
 
 [source, shell, role="copypaste"]
 ----
-sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
+sh $PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
 Reload *PREVIEW* right away and you will see the entries again. But this time note that there are only two entries. And thats what we had specified in our Cache configuration.
@@ -603,7 +603,7 @@ and re-run the load script:
 
 [source, shell, role="copypaste"]
 ----
-sh $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
+sh $PROJECTS_ROOT/dg8-workshop-labs/dg8-embedded-quarkus/scripts/load.sh
 ----
 
 Now check the terminals tab where it says  `Embedded - Live Coding` you should messages like follows

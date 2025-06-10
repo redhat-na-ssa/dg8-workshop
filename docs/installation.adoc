@@ -19,7 +19,7 @@ Red Hat Data Grid 8 comes with an Operator. The administrators of the cluster yo
 
 First, you will have to *log in from two different places*: 
 
-* *STEP 1*: If you have not already logged into OpenShift from the Dev Spaces Workspaces terminal, please do that now. Click on the `Login to Openshift` menu in the right menu called 'Workspace'. When prompted, your *Username* is `{{ USER_ID }}` and your *Password* `{{ OPENSHIFT_USER_PASSWORD }}`.
+* *STEP 1*: If you have not already logged in OpenShift from the Dev Spaces Workspaces terminal, please do that now. Click on the `Login to Openshift` menu in the right menu called 'Workspace'. When prompted, your *Username* is `{{ USER_ID }}` and your *Password* `{{ OPENSHIFT_USER_PASSWORD }}`.
 
 * *STEP 2*: You will also need to access the OpenShift Web Console. Open a new tab to the link:{{ CONSOLE_URL }}[OpenShift web console^]. You will be prompted to log in. Use the following credentials:
 

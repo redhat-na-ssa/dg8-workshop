@@ -128,7 +128,7 @@ First let's cd into the current project
 
 [source, shell, role="copypaste"]
 ----
-cd $CHE_PROJECTS_ROOT/dg8-workshop-labs/dg8-restapi
+cd $PROJECTS_ROOT/dg8-workshop-labs/dg8-restapi
 ----
 
 To register protobuf schemas via REST, invoke a POST or PUT in the `___protobuf_metadata` cache as in the following command

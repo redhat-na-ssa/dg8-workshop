@@ -5,14 +5,14 @@ Let's delve into some of the basic features of a Red Hat Data Grid. Our workshop
 
 == About your workspace environment
 
-In this workshop, we will use Red Hat CodeReady Workspaces, an online IDE based on https://www.eclipse.org/che/[Eclipe Che, window=_blank]. This product has several benefits:
+In this workshop, we will use Red Hat Dev Spaces, an online IDE based on https://www.eclipse.org/che/[Eclipe Che, window=_blank]. This product has several benefits:
 
 * You won't need to install all the CLI tools on your laptop.
 * All the attendees will have the same tool versions and configuration
 * Also, *all file modifications are auto-saved every few seconds*, so you don't need to save changes explicitly.
 
 
-Please, {{ CHE_URL }}[access the CodeReady Workspaces instance^] and log in using the username and password you are assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+Please, {{ CHE_URL }}[access the Dev Spaces instance^] and log in using the username and password you are assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
 
 image::codeready-login.png[codeready-login, 700, align="center"]
 
@@ -27,7 +27,7 @@ image::codeready-icons.png[codeready-icons, 400, align="center"]
 If things get weird or your browser appears to be broken, you can simply reload the browser tab to refresh the view.
 ====
 
-Many features of CodeReady Workspaces are accessed via *Commands*. You can see a few of the commands listed with links on the home page (e.g., _New File.._, _Git Clone.._, and others). If you ever need to run commands that you don't see in a menu, you can press kbd:[F1] to open the command window, or the more traditional kbd:[Control+SHIFT+P] (or kbd:[Command+SHIFT+P] on Mac OS X).
+Many features of Dev Spaces are accessed via *Commands*. You can see a few of the commands listed with links on the home page (e.g., _New File.._, _Git Clone.._, and others). If you ever need to run commands that you don't see in a menu, you can press kbd:[F1] to open the command window, or the more traditional kbd:[Control+SHIFT+P] (or kbd:[Command+SHIFT+P] on Mac OS X).
 
 Let's import our first project. Click on **Git Clone..** (or type kbd:[F1], enter 'git' and click on the auto-completed _Git Clone.._ )
 

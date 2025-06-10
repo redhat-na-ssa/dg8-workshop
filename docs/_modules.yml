@@ -5,7 +5,7 @@ modules:
   about:
     name: Preface
   dgin10mins:
-    name: DataGrid in 10 mins
+    name: Data Grid in 10 mins
   settingup:
     name: Setting up
   installation:
@@ -13,7 +13,7 @@ modules:
   remotecache:
     name: Quarkus Remote Cache app
   monitoring:
-    name: Monitoring and metrics  
+    name: Monitoring and Metrics  
   crosssite:
     name: Kubernetes native Cross site clusters  
   createcache:

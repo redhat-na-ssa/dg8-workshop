@@ -169,7 +169,7 @@ spec:
 
 WARNING: You need to replace the value of the bearer token.
 
-For this, head off to your CodeReady workspaces Terminal and run the following command in the CodeReady workspaces terminal. Ensure that you are already logged in to Openshift via the terminal and that your project is `{{ USER_ID }}-cache`.
+For this, head off to your Dev Spaces workspace Terminal and run the following command. Ensure that you are already logged in to Openshift via the terminal and that your project is `{{ USER_ID }}-cache`.
 
 [source, shell, role="copypaste"]
 ----
