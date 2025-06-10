@@ -324,7 +324,7 @@ It is suggested that at this moment you close all terminal windows that you migh
 
 A quick look at our side bar menu on the right called `MyWorkspace`
 
-image::codeready-workspace-terminal.png[cdw, 400, align="center"]
+===image here===
 
 We will use this menu through out the labs. There is a bunch of commands created specifically for this workshop.
 
