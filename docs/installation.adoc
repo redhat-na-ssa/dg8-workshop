@@ -62,14 +62,14 @@ NOTE: We are calling our service `datagrid-service`, we will use this name in th
 
 Click *Create* at the bottom. Wait until the Data Grid nodes have successfully formed a cluster.
 
-Now let's retrieve the Data Grid CR definition from the command line. To do this, head over to the Dev Spaces Workspace and log in to Openshift. 
+Now let's retrieve the Data Grid CR definition from the command line. To do this, head over to the Dev Spaces Workspace and log in OpenShift. 
 
 image::devspaces_terminal.gif[openshift_login, 700]
 
 
-NOTE: You should already be logged in, but if you are not, just run `oc login https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --insecure-skip-tls-verify=true --username={{ USER_ID }} --password={{ OPENSHIFT_USER_PASSWORD }}`
+You should already be logged in. You can confirm your user by running `oc whoami` in the console. It should match your assigned user. 
 
-
+If you are not, just run `oc login https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --insecure-skip-tls-verify=true --username={{ USER_ID }} --password={{ OPENSHIFT_USER_PASSWORD }}`.
 
 After logging in, you should see the following message:
 
@@ -86,7 +86,7 @@ Using project "{{ USER_ID }}-cache".
 Welcome! See 'oc help' to get started.
 ----
 
-Initiate a `>_ New Terminal` in Dev Spaces workspace as in the previous section and run the following command
+In the terminal, run the following command:
 
 [source, shell, role="copypaste"]
 ----
