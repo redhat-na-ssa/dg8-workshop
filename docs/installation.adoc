@@ -194,7 +194,7 @@ We will make changes to the cluster `Spec:`, navigate your cursor to `Replicas` 
 
 image::dg_edit_CR_LoadBalancer.png[Edit and Save, 700]
 
-Perfect now press `save`.
+Perfect. Now press `save`.
 
 <1> Navigate back to `Installed Operators > Operator Details` and then click `datagrid-service`.
 <2> Then click on `Resources > datagrid-service-external` 

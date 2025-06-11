@@ -21,17 +21,17 @@ We will use two projects/namespaces:
 <2> {{ USER_ID }}-cache2 - Site (LON)
 
 
-Open the `OpenShift` console with the link:{{ CONSOLE_URL }}[OpenShift web console^]
+Open the link:{{ CONSOLE_URL }}[OpenShift web console^].
 
-Choose the project {{ USER_ID }}-cache
+Choose the project `{{ USER_ID }}-cache`.
 
-And create a new Data Grid instance by Navigating to `Installed Operators > Data Grid > Create Infinispan ` as the following picture shows:
+Create a new Data Grid instance by navigating to `Installed Operators > Data Grid > Create Infinispan ` as the following picture shows:
 
 image::create-infinispan.png[Cross site - Topology, 700]
 
 Press the button `Create Infinispan`.
 
-First, we will create a new Infinispan cluster for our NYC location in the {{ USER_ID }}-cache
+First, we will create a new Infinispan cluster for our NYC location in the `{{ USER_ID }}-cache` project.
 
 image::xsite-nyc-yaml.png[Cross site - Topology, 700]
 
@@ -67,7 +67,7 @@ spec:
 ----
 
 
-And let's do the same for our LON site in the project `{{ USER_ID }}-cache2`:
+Let's do the same for our LON site in the project `{{ USER_ID }}-cache2`:
 
 image::xsite-lon-yaml.png[Cross site - Topology, 700]
 
@@ -103,7 +103,7 @@ spec:
     type: DataGrid    
 ----
 
-Once the cluster starts to provision via the operator you should see it listed as follows:
+Once the cluster starts to provision via the operator, you should see it listed as follows:
 
 image::xsite-nyc-screenshot.png[Cross site - Topology, 700]
 
