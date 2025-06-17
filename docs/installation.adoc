@@ -181,7 +181,7 @@ image::dg_edit_CR.png[Edit CR, 700]
 It should load the YAML with some additional information e.g. timestamp, labels etc that were added by the operator once the cluster instance was created. 
 
 
-We will make changes to the cluster `Spec:`, navigate your cursor to `Replicas` under spec and add the following as shown in the picture below.
+We will make changes to the cluster `Spec:`, navigate your cursor to `replicas` under spec and add the following as shown in the picture below.
 
 [source, shell, role="copypaste"]
 ----
@@ -200,7 +200,7 @@ you should see the following page with the address for the DataGrid Console
 image::dg_routes.png[DG cluster detail view, 700]
 
 
-Click on the link to open the terminal:
+Click on the link to open the console:
 
 [NOTE]
 ====
@@ -216,7 +216,7 @@ The Data Grid operator creates the credentials during installation time and they
 oc get secret datagrid-service-generated-secret -o jsonpath="{.data.identities\.yaml}" | base64 --decode
 ----
 
-And now the final test to check we have a running cluster: Log in with the username developer and the password from the above secret.
+And now the final test to check we have a running cluster: Log in with the username `developer` and the password from the above secret.
 
 image::dg_adminconsole.png[openshift_login, 900]
 
@@ -277,9 +277,6 @@ Because Cache Service nodes are volatile you lose all data when you apply change
 * Add file-based cache stores to save data in a persistent volume.
 * Query values across caches using the Data Grid Query API.
 * Use advanced Data Grid features and capabilities.
-
-You might have noticed that in our current example in this section we used the Cache service, in the upcoming labs, we will configure the different services and features entailed thereof.
-
 
 === Recap
 

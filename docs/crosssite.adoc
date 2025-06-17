@@ -153,7 +153,7 @@ If you haven't been able to figure it out, take a look at the following commands
 oc project {{ USER_ID }}-cache2
 
 # get the console url for site LON
-echo "https://$(oc get services | grep example-lon-external | awk '{ print $4 }'):11222"
+echo "https://$(oc get route example-lon-external -o jsonpath='{.spec.host}')"
 
 # get the password for user developer to login to the console
 echo "$(oc get secret example-lon-generated-secret -o jsonpath="{.data.identities\.yaml}" | base64 --decode | grep password | awk '{ print $2 }' )"
