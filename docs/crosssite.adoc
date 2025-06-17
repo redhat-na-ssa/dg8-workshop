@@ -197,7 +197,7 @@ Let's do the same for our site in NYC as well.
 oc project {{ USER_ID }}-cache
 
 # get the console url for site NYC
-echo "https://$(oc get services | grep example-nyc-external | awk '{ print $4 }'):11222"
+echo "https://$(oc get route example-nyc-external -o jsonpath='{.spec.host}')"
 
 # get the password for user developer to login to the console
 echo "$(oc get secret example-nyc-generated-secret -o jsonpath="{.data.identities\.yaml}" | base64 --decode | grep password | awk '{ print $2 }' )"
