@@ -17,11 +17,9 @@ Red Hat Data Grid 8 comes with an Operator. The administrators of the cluster yo
 
 === Installing Data Grid
 
-First, you will have to *log in from two different places*: 
+First, you need access to the cluster: 
 
-* *STEP 1*: If you have not already logged in OpenShift from the Dev Spaces Workspaces terminal, please do that now. Click on the `Login to Openshift` menu in the right menu called 'Workspace'. When prompted, your *Username* is `{{ USER_ID }}` and your *Password* `{{ OPENSHIFT_USER_PASSWORD }}`.
-
-* *STEP 2*: You will also need to access the OpenShift Web Console. Open a new tab to the link:{{ CONSOLE_URL }}[OpenShift web console^]. You will be prompted to log in. Use the following credentials:
+Open a new tab with the link:{{ CONSOLE_URL }}[OpenShift web console^]. You will be prompted to log in. Use the following credentials:
 
 ** Username: `{{ USER_ID }}`.
 ** Password: `{{ OPENSHIFT_USER_PASSWORD }}`.
@@ -54,7 +52,7 @@ spec:
   replicas: 2 <3>
 ----
 
-<1> Tell Kubernetes/Openshift that the Custom Resource type is `Infinispan`.
+<1> Tell Kubernetes/OpenShift that the Custom Resource type is `Infinispan`.
 <2> Specify the name of our cluster as `datagrid-service`.
 <3> Specify the replicas we want for our service.
 
@@ -65,7 +63,6 @@ Click *Create* at the bottom. Wait until the Data Grid nodes have successfully f
 Now let's retrieve the Data Grid CR definition from the command line. To do this, head over to the Dev Spaces Workspace and log in OpenShift. 
 
 image::devspaces_terminal.gif[openshift_login, 700]
-
 
 You should already be logged in. You can confirm your user by running `oc whoami` in the console. It should match your assigned user. 
 
@@ -189,30 +186,28 @@ We will make changes to the cluster `Spec:`, navigate your cursor to `Replicas` 
 [source, shell, role="copypaste"]
 ----
   expose:
-    type: LoadBalancer
+    type: Route
 ----
 
-image::dg_edit_CR_LoadBalancer.png[Edit and Save, 700]
+image::dg_edit_CR_Route.png[Edit and Save, 700]
 
 Perfect. Now press `save`.
 
-<1> Navigate back to `Installed Operators > Operator Details` and then click `datagrid-service`.
-<2> Then click on `Resources > datagrid-service-external` 
-you should see the following page with the `Service address` and the expose LoadBalancer link to your Data Grid Console.
+<1> Navigate back to the `Administrator` view.
+<2> Then click on `Networking > Routes` 
+you should see the following page with the address for the DataGrid Console
 
-image::dg_CR_detailview.png[DG cluster detail view, 700]
-
-
-The following is an example, your `LoadBalancer` URL will most likely differ:
-
-* `a256fafe1f822452fb4c2fb3e3a5aff6-1344204513.us-east-2.elb.amazonaws.com`
+image::dg_routes.png[DG cluster detail view, 700]
 
 
-If you try to access the URL; by providing the protocol `https` and the Data Grid port `11222`, we are currently not using a signed certificate so you can ignore the warning at this moment. 
+Click on the link to open the terminal:
 
-* `https://a256fafe1f822452fb4c2fb3e3a5aff6-1344204513.us-east-2.elb.amazonaws.com:11222/`
+[NOTE]
+====
+Because we are using self-signed certificates, you will need to manually accept them to access the console. 
+====
 
-you would need to provide credentials. 
+To be able to access the console, you will need to provide credentials. 
 
 The Data Grid operator creates the credentials during installation time and they should be stored in your namespace secrets. Head back to your Dev Spaces Workspace terminal. Let's get the secret with the following command.
 

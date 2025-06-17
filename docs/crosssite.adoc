@@ -163,7 +163,8 @@ Perfect! Now that we have the details let's open up the console and set up the c
 
 image::dg8_createcache_console.png[Create cache, 700]
 
-After pressing `Create cache` you will see the following form. In the field `Provide Cache configuration` add the following XML and press create:
+After pressing `Create cache` you will a form. Enter `xsiteCache` as the cache name, and select `Add cache configuration` and click on the `next` button.
+On the next form, add the following XML and press `create`:
 
 image::dg8_createcacheform_console.png[Create cache, 700]
 
