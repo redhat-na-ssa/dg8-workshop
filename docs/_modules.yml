@@ -9,19 +9,19 @@ modules:
   settingup:
     name: Setting up
   installation:
-    name: Kubernetes native Cache service
+    name: Kubernetes-Native Cache Service
   remotecache:
-    name: Quarkus Remote Cache app
+    name: Quarkus Remote Cache App
   monitoring:
     name: Monitoring and Metrics  
   crosssite:
-    name: Kubernetes native Cross-site clusters  
+    name: Cross-Site Clusters  
   createcache:
     name: Create Cache via Custom Resources      
   exercises:
     name: Getting started with Data Grid
   sessionexternalization:
-    name: Externalizing Sessions
+    name: Externalizing Spring Boot Sessions
   appendix:
     name: Setting up your own environment
   conclusion:

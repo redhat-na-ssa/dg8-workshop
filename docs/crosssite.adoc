@@ -1,4 +1,4 @@
-=== Deployment: Geo-Distributed Cache
+= Deployment: Geo-Distributed Cache
 
 Data Grid Operator in one data center can discover a Data Grid cluster that another Data Grid Operator manages in another data center. This discovery allows Data Grid to automatically form cross-site views and create global clusters.
 
