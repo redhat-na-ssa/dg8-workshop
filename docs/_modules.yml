@@ -15,7 +15,7 @@ modules:
   monitoring:
     name: Monitoring and Metrics  
   crosssite:
-    name: Kubernetes native Cross site clusters  
+    name: Kubernetes native Cross-site clusters  
   createcache:
     name: Create Cache via Custom Resources      
   exercises:

@@ -10,7 +10,7 @@ An embedded cache service allows Spring Boot applications to embed HTTP session 
 
 Go to _Explorer: /projects_ in _Dev Spaces_ Web IDE and expand the *dg8-spring-session* directory.
 
-image::devspaces-embedded-cache-project.png[embeddedCache, 700]
+image::devspaces-embedded-cache-project.png[embeddedCache, 700, align="center"]
 
 There are a few interesting things that we need to take a look at in this Spring Boot application before we will develop it in Dev Spaces.
 
@@ -129,11 +129,11 @@ image::embedded-cache-terminal-cluster.png[terminal-cluster, 700]
 Now, to access the applications, let's use the endpoints available in the workspace.
 On the `Explorer` menu, click on `Endpoints`. Click on the `Eye` icon to show the public endpoints avaiable. You will see the ones we need in the bottom.
 
-image::embedded-cache-endpoints.png[terminal-cluster, 700]
+image::embedded-cache-endpoints.png[endpoints, align="center"]
 
 Click on the `Copy URL` button of the `instace1` endpoint. Paste on a new browser tab.
 
-image::embedded-cache-app-1.png[terminal-cluster, 700]
+image::embedded-cache-app-1.png[app1, 700]
 
 This application has two buttons:
 
@@ -142,13 +142,13 @@ This application has two buttons:
 
 Start by clicking on the `invoke the service` button to create the session, click a second time to include it in the `active_sessions` shared cache.
 
-image::embedded-cache-app-2.png[terminal-cluster, 700]
+image::embedded-cache-app-2.png[app2, 700]
 
 Now, go back to the workspace and copy the endpoint for the `instance2`. On a new tab, paste the url.
 
 Click on the `invoke the service` two times to see the inclusion of the new session in the shared cache.
 
-image::embedded-cache-app-2.png[terminal-cluster, 700]
+image::embedded-cache-app-3.png[app3, 700]
 
 You can keep testing by using the `clear the cache` button or using different browsers to create new sessions and see how this clustered configuration works.
 
