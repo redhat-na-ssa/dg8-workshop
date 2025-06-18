@@ -4,7 +4,7 @@
 
 In this lab, we'll show how to externalize *HTTP Sessions* from *Spring Boot* to *Data Grid*. Data Grid Spring Session support is built on _SpringRemoteCacheManager_ and _SpringEmbeddedCacheManager_, which means developers don't need to store HTTP session data in Data Grid manually for clustering the session data across multiple Spring Boot applications. Behind the scenes, Data Grid will autowire Spring Boot Session to distributed caches in Data Grid.
 
-=== 1. Developing EmbeddedCache Service
+== 1. Developing EmbeddedCache Service
 
 An embedded cache service allows Spring Boot applications to embed HTTP session data in an in-memory data storage when users invoke RESTful endpoints in a frontend web page. Let's go through quickly how this works. We'll be using *Spring Session* combined with an *In-Memory Cache* provided by Data Grid.
 
@@ -102,76 +102,59 @@ Copy below the `// TODO: Add an Infinispan annotation here` marker:
 
 *Perfect!* Now we have all the building blocks ready to use the cache. Let's start using our cache.
 
-=== 2. Deploying EmbeddedCache Service
+== 2. Running Instances Locally
 
-Now we will build and deploy the project using the following command, which will use the maven plugin to deploy via Dev Spaces Terminal:
+For this exercise we are using an embedded cache that can be clustered with other Spring Boot instances. The mechanism used to identify and connect to cluster members is http://www.jgroups.org/[JGroups].
+To make the process of auto discovery easier to implement, we are going to run two instance of the same Spring Boot application in your workspace. 
 
-[source,sh,role="copypaste"]
-----
-mvn clean package spring-boot:repackage -f $PROJECTS_ROOT/dg8-workshop-labs/dg8-spring-session
-----
+Since you already made the appropriate changes to the code, we can leverage CLI commands defined in the workspace itself.
 
-Create a build configuration for your application using the OpenJDK base container image in OpenShift:
+On the left side menu, click on the `Task Manager` icon, under *devfile*, click on the `play` button for `instance1`.
 
-[source,sh,role="copypaste"]
-----
-oc new-build registry.access.redhat.com/ubi8/openjdk-11 --binary --name=cacheapp -l app=cacheapp
-----
+image::embedded-cache-task-manager.gif[task-manager, 700]
 
-Start and watch the build, which will take about minutes to complete:
+[NOTE]
+====
+Close the option to open a tab to access the web application. The workspace already has routes for this exercise and we are going to use it.
+====
 
-[source,sh,role="copypaste"]
-----
-oc start-build cacheapp --from-file=$PROJECTS_ROOT/dg8-workshop-labs/dg8-spring-session/target/rhdg-0.0.1-SNAPSHOT.jar --follow
-----
+now do the same thing for `instance2`.
 
-Deploy it as an OpenShift application after the build is done:
+Once the instance starts you will be able to check in the logs that both applications are joined in the same cluster.
 
-[source,sh,role="copypaste"]
-----
-oc new-app cacheapp && oc expose svc/cacheapp && \
-oc label deployment/cacheapp app.kubernetes.io/part-of=catalog app.openshift.io/runtime=spring --overwrite
-----
+image::embedded-cache-terminal-cluster.png[terminal-cluster, 700]
 
-Finally, make sure it is actually done rolling out. Visit the {{ CONSOLE_URL }}/topology/ns/{{ USER_ID }}-cache[Topology View^] for the cache service, and ensure you get the blue circles!
+== 3. Testing EmbeddedCache Service
 
-image::embeddedCache-topology.png[embeddedCache, 500]
+Now, to access the applications, let's use the endpoints available in the workspace.
+On the `Explorer` menu, click on `Endpoints`. Click on the `Eye` icon to show the public endpoints avaiable. You will see the ones we need in the bottom.
 
-=== 3. Testing EmbeddedCache Service
+image::embedded-cache-endpoints.png[terminal-cluster, 700]
 
-Let's scale up the cache service to make sure the clustered Spring applications refer to _Spring Session_ in Data Grid. Click on `Up Arrow` once in the _Overview_ page:
+Click on the `Copy URL` button of the `instace1` endpoint. Paste on a new browser tab.
 
-image::embeddedCache-scaleup-start.png[embeddedCache, 700]
+image::embedded-cache-app-1.png[terminal-cluster, 700]
 
-Then you will see how the pod is scaling up:
+This application has two buttons:
 
-image::embeddedCache-scaleup-end.png[embeddedCache, 700]
+* One that creates a session and tracks calls to the resource;
+* One that erases the session in use;
 
-Let's go externalizing Spring Session to Data Grid! Access the http://cacheapp-{{ USER_ID }}-cache.{{ ROUTE_SUBDOMAIN}}[Cache Service UI^]!
+Start by clicking on the `invoke the service` button to create the session, click a second time to include it in the `active_sessions` shared cache.
 
-image::embeddedCache-ui.png[embeddedCache, 700]
+image::embedded-cache-app-2.png[terminal-cluster, 700]
 
-Click on `Invoke the service` then the *created* _Spring Session ID_ is already stored at in-memory datagrid as *active* data in the _Result_ box:
+Now, go back to the workspace and copy the endpoint for the `instance2`. On a new tab, paste the url.
 
-image::embeddedCache-invoke1.png[embeddedCache, 700]
+Click on the `invoke the service` two times to see the inclusion of the new session in the shared cache.
 
-Open a new web browser window and access the http://cacheapp-{{ USER_ID }}-cache.{{ ROUTE_SUBDOMAIN}}[Cache Service UI^].
+image::embedded-cache-app-2.png[terminal-cluster, 700]
 
-Click on `Invoke the service` once again then you will see the exact same _Spring Session ID_ and _active data_ but the *count* is increased to `2`. So two applications are clustered and refer to the *embedded Infinispan cache:
+You can keep testing by using the `clear the cache` button or using different browsers to create new sessions and see how this clustered configuration works.
 
-image::embeddedCache-invoke2.png[embeddedCache, 700]
 
-Go back to the *first* web browser then click on `Clear the cache`. Move to the *second* web browser then click on `Invoke the service`.
-You will see new *Session ID*, *active data* and the count is reset to *1* again:
+== 4. Conclusion
 
-image::embeddedCache-invoke3.png[embeddedCache, 700]
+We now have implemented Spring Session with embedded in-memory Data Grid for clustering HTTP sessions across Spring Boot microservices. 
 
-Let's double-check if the Spring Session is clustered in all the running pods. Go back to the {{ CONSOLE_URL }}/topology/ns/{{ USER_ID }}-cache[Topology View^] and click on 'View logs' in the pods:
-
-image::embeddedCache-invoke4.png[embeddedCache, 700]
-
-Now that we know how to react to changes in the cluster topology, we can also react to changes to the data within the cluster. The *CacheListener* separates the roles of our two pods such as putting data in the cache(_-- Entry for CACHE_ENTRY_MODIFIED created_) and showing the cache modifications(_-- Entry for CACHE_ENTRY_MODIFIED modified_):
-
-image::embeddedCache-logs.png[embeddedCache, 700]
-
-We now have implemented Spring Session with embedded in-memory Data Grid for clustering HTTP sessions across Spring Boot microservices. *Congratulations!*
+*Congratulations!*
