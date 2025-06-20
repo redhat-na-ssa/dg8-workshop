@@ -1,0 +1,30 @@
+---
+- name: Create project for {{ project_user }}
+  k8s:
+    state: present
+    kind: Project
+    api_version: project.openshift.io/v1
+    definition:
+      metadata:
+        name: "{{ project_name }}"
+        annotations:
+          openshift.io/description: ""
+          openshift.io/display-name: "DataGrid Workshop project for {{ project_user }}"
+
+- name: Assign permissions for user {{ project_user }}
+  k8s:
+    state: present
+    kind: RoleBinding
+    api_version: rbac.authorization.k8s.io/v1
+    definition:
+      metadata:
+        name: admin
+        namespace: "{{ project_name }}"
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: admin
+      subjects:
+        - apiGroup: rbac.authorization.k8s.io
+          kind: User
+          name: "{{ project_user }}"

@@ -1,0 +1,40 @@
+---
+# vim: set ft=ansible
+
+# Implement your Workload deployment tasks here
+- name: Create projects for userXX-{{ workshop_openshift_project_postfix }}
+  ansible.builtin.include_tasks: create_project.yaml
+  vars:
+    project_user: "{{ item }}"
+    project_name: "{{ item }}-{{ workshop_openshift_project_postfix }}"
+  loop: "{{ users }}"
+
+- name: Create projects for userXX-{{ workshop_openshift_project_postfix2 }}
+  ansible.builtin.include_tasks: create_project.yaml
+  vars:
+    project_user: "{{ item }}"
+    project_name: "{{ item }}-{{ workshop_openshift_project_postfix2 }}"
+  loop: "{{ users }}"
+
+- name: Create datagrid for users in project cache
+  ansible.builtin.include_tasks: install-datagrid.yaml
+  vars:
+    user: "{{ item }}"
+    projectname: "{{ item }}-cache"
+  loop: "{{ users }}"
+
+- name: Create datagrid for users in project cache2
+  ansible.builtin.include_tasks: install-datagrid.yaml
+  vars:
+    user: "{{ item }}"
+    projectname: "{{ item }}-cache2"
+  loop: "{{ users }}"
+
+- name: Install Devspaces
+  ansible.builtin.include_tasks: install_devspaces.yml
+
+- name: Install user distribution
+  ansible.builtin.include_tasks: install-user-distribution.yaml
+
+- name: Install Monitoring
+  ansible.builtin.include_tasks: install-monitoring.yaml

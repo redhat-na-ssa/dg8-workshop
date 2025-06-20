@@ -1,0 +1,39 @@
+---
+# vim: set ft=ansible
+
+# Implement your Workload removal tasks here
+- name: Create usernames
+  ansible.builtin.set_fact:
+    users: "{{ users | default([]) + ['user' + item | string] }}"
+  loop: "{{ range(1, ((num_users | int) + 1)) | list }}"
+
+- name: Remove the user Projects - {{ workshop_openshift_project_postfix }}
+  kubernetes.core.k8s:
+    state: absent
+    name: "{{ item }}-{{ workshop_openshift_project_postfix }}"
+    kind: Project
+    api_version: project.openshift.io/v1
+  with_list: "{{ users }}"
+
+- name: Remove the user Projects - {{ workshop_openshift_project_postfix2 }}
+  kubernetes.core.k8s:
+    state: absent
+    name: "{{ item }}-{{ workshop_openshift_project_postfix2 }}"
+    kind: Project
+    api_version: project.openshift.io/v1
+  with_list: "{{ users }}"
+
+- name: Remove the guides
+  kubernetes.core.k8s:
+    state: absent
+    name: "guides"
+    kind: Project
+    api_version: project.openshift.io/v1
+
+# TODO delete DevSpaces
+
+# Leave this as the last task in the playbook.
+- name: Remove_workload tasks complete
+  ansible.builtin.debug:
+    msg: "Remove Workload tasks completed successfully."
+  when: not silent | bool

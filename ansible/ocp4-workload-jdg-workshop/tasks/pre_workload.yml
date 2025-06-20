@@ -1,0 +1,77 @@
+---
+# Implement your Pre Workload deployment tasks here
+
+- name: Check Required Parameters num_users
+  ansible.builtin.fail:
+    msg: "This play requires 'num_users' to be defined"
+  when:
+    - (num_users is not defined)  or (num_users is none)
+  ignore_errors: false
+
+- name: Check Required Parameters workshop_openshift_user_password
+  ansible.builtin.fail:
+    msg: "This play requires 'workshop_openshift_user_password' to be defined"
+  when:
+    - (workshop_openshift_user_password is not defined)  or (workshop_openshift_user_password is none)
+  ignore_errors: false
+
+- name: Usercount debug
+  ansible.builtin.debug:
+    msg: "Debugging num_users {{ num_users }}"
+
+- name: Initialize username array
+  ansible.builtin.set_fact:
+    users: []
+
+- name: Create usernames
+  ansible.builtin.set_fact:
+    users: "{{ users + ['user' + item | string] }}"
+  loop: "{{ range(1, ((num_users | int) + 1)) | list }}"
+
+- name: Get API server URL
+  kubernetes.core.k8s_info:
+    api_version: config.openshift.io/v1
+    kind: Infrastructure
+    name: cluster
+  register: r_api_url
+
+- name: Get Web Console route
+  kubernetes.core.k8s_info:
+    api_version: route.openshift.io/v1
+    kind: Route
+    namespace: openshift-console
+    name: console
+  register: r_console_route
+
+- name: Get route subdomain
+  kubernetes.core.k8s_info:
+    kind: IngressController
+    name: default
+    namespace: openshift-ingress-operator
+  register: route_subdomain_r
+
+- name: Set route_subdomain
+  ansible.builtin.set_fact:
+    route_subdomain: "{{ route_subdomain_r.resources[0].status.domain }}"
+
+- name: Set the master
+  ansible.builtin.set_fact:
+    master_url: "{{ r_api_url.resources[0].status.apiServerURL }}"
+
+- name: Set the console
+  ansible.builtin.set_fact:
+    console_url: "https://{{ r_console_route.resources[0].spec.host }}"
+
+- name: Debug values
+  ansible.builtin.debug:
+    msg:
+      - "master URL: {{ master_url }}"
+      - "console URL: {{ console_url }}"
+      - "route subdomain: {{ route_subdomain }}"
+      - "ocp_username: {{ ocp_username }}"
+
+# Leave this as the last task in the playbook.
+- name: Pre_workload tasks complete
+  ansible.builtin.debug:
+    msg: "Pre-Workload tasks completed successfully."
+  when: not silent|bool

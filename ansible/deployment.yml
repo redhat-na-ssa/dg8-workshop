@@ -1,0 +1,9 @@
+- name: Install Workshop
+  hosts: localhost
+  vars:
+    ocp_username: username
+    ACTION: create
+  tasks:
+    - name: Include DataGrid
+      ansible.builtin.include_role:
+        name: ocp4-workload-jdg-workshop

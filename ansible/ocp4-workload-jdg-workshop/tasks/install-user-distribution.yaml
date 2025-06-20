@@ -1,0 +1,138 @@
+- name: Create guides project
+  when: num_users | int > 0
+  kubernetes.core.k8s:
+    state: present
+    kind: Project
+    api_version: project.openshift.io/v1
+    definition:
+      metadata:
+        name: "guides"
+        annotations:
+          openshift.io/description: ""
+          openshift.io/display-name: "Data Grid Workshop Guides"
+
+- name: Search for username distribution tool
+  kubernetes.core.k8s_info:
+    kind: DeploymentConfig
+    name: get-a-username
+    namespace: guides
+  register: r_gau_dc
+
+- name: Deploy redis
+  when: r_gau_dc.resources | list | length == 0
+  ansible.builtin.shell: >
+    oc process -f -
+    -p DATABASE_SERVICE_NAME=redis
+    -p REDIS_PASSWORD=redis
+    -p VOLUME_CAPACITY=1Gi
+    -p MEMORY_LIMIT=1Gi
+    -p REDIS_VERSION=6-el7
+    | oc create -n guides  -f -
+  args:
+    stdin: "{{ lookup('file', './files/redis-template.yaml') }}"
+
+- name: Wait for redis to be ready
+  when: r_gau_dc.resources | list | length == 0
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Pod
+    namespace: guides
+    label_selectors:
+      - name = redis
+      - deploymentconfig = redis
+    field_selectors:
+      - status.phase=Running
+  register: r_redis_pod
+  retries: 120
+  delay: 10
+  until: r_redis_pod.resources | list | length == 1
+
+  # yamllint disable rule:line-length
+- name: Deploy username distribution tool
+  when: r_gau_dc.resources | list | length == 0
+  ansible.builtin.shell: >
+    oc -n guides new-app --as-deployment-config quay.io/openshiftlabs/username-distribution:1.4 --name=get-a-username
+    -e LAB_REDIS_HOST=redis
+    -e LAB_REDIS_PASS=redis
+    -e LAB_TITLE={{ 'Data Grid Workshop' | quote }}
+    -e LAB_DURATION_HOURS=8h
+    -e LAB_USER_COUNT={{ num_users }}
+    -e LAB_USER_ACCESS_TOKEN={{ workshop_access_token }}
+    -e LAB_USER_PASS={{ workshop_openshift_user_password }}
+    -e LAB_USER_PREFIX=user
+    -e LAB_USER_PAD_ZERO=false
+    -e LAB_ADMIN_PASS={{ workshop_openshift_user_password }}
+    -e LAB_MODULE_URLS={{ ('http://web-guides.' + route_subdomain + '/workshop/dg8-workshop/lab/about?userid=%USERNAME%;Getting Started with Red Hat DataGrid Hands-on Lab') | quote }}
+    -e LAB_EXTRA_URLS={{ ( console_url + ';OpenShift Console, https://devspaces.' + route_subdomain + ';Dev Spaces Dashboard' ) | quote }}
+  # yamllint enable rule:line-length
+
+- name: Expose username distribution tool
+  when: r_gau_dc.resources | list | length == 0
+  kubernetes.core.k8s:
+    api_version: route.openshift.io/v1
+    namespace: guides
+    state: present
+    kind: Route
+    definition:
+      metadata:
+        name: get-a-username
+        labels:
+          app: get-a-username
+      spec:
+        host: ''
+        to:
+          kind: Service
+          name: get-a-username
+          weight: 100
+        port:
+          targetPort: 8080-tcp
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Allow
+  register: Route
+
+- name: Search for guide
+  kubernetes.core.k8s_info:
+    kind: DeploymentConfig
+    name: web
+    namespace: guides
+  register: r_guide_dc
+
+- name: Deploy guide
+  when: r_guide_dc.resources | list | length == 0
+  # yamllint disable rule:line-length
+  ansible.builtin.shell: >
+    oc new-app -n guides --as-deployment-config quay.io/jamesfalkner/workshopper --name=web
+    -e CHE_USER_PASSWORD='openshift'
+    -e OPENSHIFT_USER_PASSWORD='{{ workshop_openshift_user_password }}'
+    -e MASTER_URL={{ master_url }}
+    -e CONSOLE_URL={{ console_url }}
+    -e CHE_URL=https://devspaces.{{ route_subdomain }}
+    -e ROUTE_SUBDOMAIN={{ route_subdomain }}
+    -e CONTENT_URL_PREFIX='{{ workshop_labs_url }}'
+    -e WORKSHOPS_URLS='{{ workshop_labs_url }}/{{ workshop_labs_file }}'
+    -e LOG_TO_STDOUT=true
+  # yamllint enable rule:line-length
+
+- name: Create the Route for guides
+  when: r_guide_dc.resources | list | length == 0
+  kubernetes.core.k8s:
+    namespace: guides
+    state: present
+    kind: Route
+    definition:
+      metadata:
+        name: web
+        labels:
+          app: web
+      spec:
+        host: ''
+        to:
+          kind: Service
+          name: web
+          weight: 100
+        port:
+          targetPort: 8080-tcp
+        tls:
+          termination: edge
+  register: Route

@@ -1,0 +1,12 @@
+- name: Create user monitoring config map
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: cluster-monitoring-config
+        namespace: openshift-monitoring
+      data:
+        config.yaml: |
+          enableUserWorkload: true

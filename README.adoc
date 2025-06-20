@@ -1,0 +1,34 @@
+= This is the Data Grid 8.4 workshop
+
+Last tested with OpenShift 4.18 
+It requires the Data Grid and Dev Spaces operators. 
+
+== Contributing
+In case you find an issue; use the issues; 
+In case you want to fix an issue; create a PR to the appropriate version branch
+
+== Docs/Instructions
+After you have cloned this repo. Head off to the docs directory and run the runFile.sh and head of to localhost:4000 to view the documentation.
+
+== Deployment
+
+=== What does the installer do? 
+- Install Dev Spaces Operator in namespace `openshift-devspaces`
+- Creates project for each user e.g. `user1-cache`
+- Installs DataGrid Operator and subscribes each user project to it. 
+- Create a `guides` project with the latest instruction guides for attendees
+
+=== Parameters
+
+[options="header"]
+|=======================
+| Parameter                         | Example Value | Definition
+| num_users                         | 10            | Numbers of attendees.
+| workshop_openshift_user_password  | replaceMe134  | Password for the attendees users.
+|=======================
+
+=== Example
+
+----
+ansible-playbook -e num_users=10 -e workshop_openshift_user_password=replace deployment.yml
+----
