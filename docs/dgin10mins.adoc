@@ -1,5 +1,6 @@
 = DatGrid 8 in 10 minutes
 :experimental:
+:imagesdir: images
 
 The latest update to Red Hat Runtimes is with the release of Red Hat Data Grid 8, which provides a distributed in-memory, NoSQL datastore solution. Your applications can access, process, and analyze data at in-memory speed to deliver a superior user experience. Whether using legacy applications or a new breed of microservices and functions, Red Hat Data Grid 8 will enable the journey to Open Hybrid Cloud. Data Grid includes the Infinispan open-source software project. It is available to deploy as an embedded library, a standalone server, or a containerized application on the Red Hat OpenShift Container Platform.
 

@@ -62,7 +62,7 @@
     -e LAB_USER_PREFIX=user
     -e LAB_USER_PAD_ZERO=false
     -e LAB_ADMIN_PASS={{ workshop_openshift_user_password }}
-    -e LAB_MODULE_URLS={{ ('http://web-guides.' + route_subdomain + '/workshop/dg8-workshop/lab/about?userid=%USERNAME%;Getting Started with Red Hat DataGrid Hands-on Lab') | quote }}
+    -e LAB_MODULE_URLS={{ ('https://web-guides.' + route_subdomain + '/workshop/dg8-workshop/lab/about?userid=%USERNAME%;Getting Started with Red Hat DataGrid Hands-on Lab') | quote }}
     -e LAB_EXTRA_URLS={{ ( console_url + ';OpenShift Console, https://devspaces.' + route_subdomain + ';Dev Spaces Dashboard' ) | quote }}
   # yamllint enable rule:line-length
 

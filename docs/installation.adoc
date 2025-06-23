@@ -1,5 +1,6 @@
 === Deployment: What's an Operator and how does it help us?
 :experimental:
+:imagesdir: images
 
 An Operator is a method of packaging, deploying, and managing a Kubernetes-native application. A Kubernetes-native application is an application that is both deployed on Kubernetes and managed using the Kubernetes APIs and tooling. An Operator is essentially a custom controller and encapsulates operational knowledge.
 
@@ -142,7 +143,6 @@ NAME                                                      READY   STATUS    REST
 datagrid-service-0                                        1/1     Running   0          13m
 datagrid-service-1                                        1/1     Running   0          12m
 datagrid-service-config-listener-567dd95fd-hsf99          1/1     Running   0          12m
-grafana-operator-controller-manager-745f467f5b-4kpc5      2/2     Running   2          9h
 infinispan-operator-controller-manager-5b7c8f7874-dfwn8   1/1     Running   1          9h
 ----
 

@@ -1,5 +1,6 @@
 == Embeded Cache with a cluster
 :experimental:
+:imagesdir: images
 
 In this lab we are going to cluster the embedded cache. Infinispan does this very nicely. We do not need to change a lot of configuration to achieve this.
 After configuration, we will deploy our application to Openshift and see how the cluster will work in a cloud environment.

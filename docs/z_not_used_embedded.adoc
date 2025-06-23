@@ -1,5 +1,6 @@
 = Caching 101, Let's get started with your first app
 :experimental:
+:imagesdir: images
 
 What could be cases where you want to use Cache. Let's take a moment and think about it. Where do you think you could use cache?
 Well there could be limitless answers to this question; Some common usecases are listed below

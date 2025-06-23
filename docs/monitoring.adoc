@@ -1,5 +1,6 @@
 === Monitoring the Data Grid
 :experimental:
+:imagesdir: images
 
 ==== Understanding the Stack
 OpenShift Container Platform includes a pre-configured, pre-installed, and self-updating monitoring stack that provides monitoring for core platform components. OpenShift Container Platform delivers monitoring best practices out of the box. A set of alerts are included by default that immediately notifies cluster administrators about issues with a cluster. Default dashboards in the OpenShift Container Platform web console include visual representations of cluster metrics to help you quickly understand the state of your cluster.

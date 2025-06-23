@@ -1,6 +1,6 @@
-
 = Remote Cache
 :experimental:
+:imagesdir: images
 
 === Hot Rod Client
 Hot Rod is a binary TCP protocol that Infinispan offers for high-performance client-server interactions with the following capabilities:

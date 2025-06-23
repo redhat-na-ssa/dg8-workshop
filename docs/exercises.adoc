@@ -12,7 +12,7 @@ In this workshop, we will use Red Hat Dev Spaces, an online IDE based on https:/
 * All the attendees will have the same tool versions and configuration
 * Also, *all file modifications are auto-saved every few seconds*, so you don't need to save changes explicitly.
 
-To get started, access {{ CHE_URL }}[the Dev Spaces instance^] and log in using the username and password you are assigned (e.g. `{{ USER_ID }}/{{ CHE_USER_PASSWORD }}`):
+To get started, access {{ CHE_URL }}[the Dev Spaces instance^] and log in using the username and password you are assigned (e.g. `{{ USER_ID }}/{{ OPENSHIFT_USER_PASSWORD }}`):
 
 image::devspace-login.png[devspace-login, 700, align="center"]
 
